@@ -156,6 +156,7 @@
     <Compile Include="Controllers\AppRoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TopicMasterController.cs" />
+    <Compile Include="Controllers\TopicOptionMappingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -446,6 +447,7 @@
     <Content Include="Views\TopicMaster\Delete.cshtml" />
     <Content Include="Views\TopicMaster\_TopicMasterDetails.cshtml" />
     <Content Include="Views\TopicMaster\Details.cshtml" />
+    <Content Include="Views\TopicOptionMapping\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

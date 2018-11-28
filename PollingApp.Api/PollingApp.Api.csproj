@@ -154,6 +154,7 @@
     <Compile Include="BootStrapper.cs" />
     <Compile Include="Controllers\ApiAppRoleController.cs" />
     <Compile Include="Controllers\ApiTopicMasterController.cs" />
+    <Compile Include="Controllers\ApiTopicOptionMappingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
