@@ -24,7 +24,7 @@ namespace PollingApp.Web.Controllers
       //using (var client = new System.Net.Http.HttpClient())
       //{
       //  // HTTP POST
-      //  client.BaseAddress = new Uri("http://localhost:8081/api/apitopicmaster/");
+      //  client.BaseAddress = new Uri("http://localhost:8080/api/apitopicmaster/");
       //  //client.DefaultRequestHeaders.Add("Authorization", "Basic dmNhM2VzZ2pqMjA0OTJzMjE4ajdkZjJyNmM2Ym5qNGo0YXNtazF5Zw==");
       //  client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
       //  //var response = client.GetAsync("/companies/709c095a-298b-49e8-8e73-07cea548c3d2").Result;
@@ -53,7 +53,7 @@ namespace PollingApp.Web.Controllers
     {
       using (var client = new System.Net.Http.HttpClient())
       {
-        UriBuilder builder = new UriBuilder("http://localhost:8081/api/apitopicmaster/get");
+        UriBuilder builder = new UriBuilder("http://localhost:8080/api/apitopicmaster/get");
         builder.Query = "id=" + id;
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         var response = client.GetAsync(builder.Uri).Result;
@@ -94,7 +94,7 @@ namespace PollingApp.Web.Controllers
     {
       using (var client = new System.Net.Http.HttpClient())
       {
-        UriBuilder builder = new UriBuilder("http://localhost:8081/api/apitopicmaster/get");
+        UriBuilder builder = new UriBuilder("http://localhost:8080/api/apitopicmaster/get");
         builder.Query = "id=" + id;
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         var response = client.GetAsync(builder.Uri).Result;
@@ -130,7 +130,7 @@ namespace PollingApp.Web.Controllers
     {
       using (var client = new System.Net.Http.HttpClient())
       {
-        UriBuilder builder = new UriBuilder("http://localhost:8081/api/apitopicmaster/get");
+        UriBuilder builder = new UriBuilder("http://localhost:8080/api/apitopicmaster/get");
         builder.Query = "id=" + id;
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         var response = client.GetAsync(builder.Uri).Result;
