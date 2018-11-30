@@ -39,7 +39,22 @@
     $(document).ready(function () {
       RenderGrid();
     });
-
+    function GetDropDownData() {
+      $.ajax({
+        type: "GET",
+        url: "http://localhost:57203/api/apitopicmaster/",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+          $.each(data, function () {
+            $(".myDropDownLisTId").append($("<option     />").val(this.KeyName).text(this.ValueName));
+          });
+        },
+        failure: function () {
+          alert("Failed!");
+        }
+      });
+    }
     function InsertDetails() {
       var topicName = $('#TopicName').val();
       var topicCode = $('#TopicCode').val();
