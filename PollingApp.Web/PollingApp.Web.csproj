@@ -155,6 +155,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AppRoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OptionMasterController.cs" />
     <Compile Include="Controllers\TopicMasterController.cs" />
     <Compile Include="Controllers\TopicOptionMappingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -448,6 +449,13 @@
     <Content Include="Views\TopicMaster\_TopicMasterDetails.cshtml" />
     <Content Include="Views\TopicMaster\Details.cshtml" />
     <Content Include="Views\TopicOptionMapping\Index.cshtml" />
+    <Content Include="Views\OptionMaster\Create.cshtml" />
+    <Content Include="Views\OptionMaster\Delete.cshtml" />
+    <Content Include="Views\OptionMaster\Details.cshtml" />
+    <Content Include="Views\OptionMaster\Edit.cshtml" />
+    <Content Include="Views\OptionMaster\Index.cshtml" />
+    <Content Include="Views\OptionMaster\OptionList.cshtml" />
+    <Content Include="Views\OptionMaster\_OptionMasterDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
