@@ -1,0 +1,134 @@
+﻿@*@model List<PollingApp.Models.>*@
+@model PollingApp.Models.OptionMaster
+@{
+    ViewBag.Title = "Option";
+}
+<head>
+
+</head>
+<h2>Option</h2>
+
+<div id="entityData">
+    <table class="row-border compact stripe hover dataTable" id="entityTable">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.OptionId)   </th>
+                <th>@Html.DisplayNameFor(model => model.OptionCode)   </th>
+                <th>@Html.DisplayNameFor(model => model.OptionName)   </th>
+                <th>@Html.DisplayNameFor(model => model.CreatedDate)   </th>
+                <th>@Html.DisplayNameFor(model => model.CreatedBy)   </th>
+                <th>@Html.DisplayNameFor(model => model.LastModifiedBy)    </th>
+                <th>@Html.DisplayNameFor(model => model.LastModifiedDate)   </th>
+                <th>@Html.Raw("Actions")</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@*@Html.Partial("TopicList")*@
+
+@Ajax.ActionLink("Add", "Create", null, new AjaxOptions() { UpdateTargetId = "entityContainer", HttpMethod = "Get", OnComplete = "ShowEntityModal" }, new { @class = "btn btn-primary" })
+
+<div id="entityContainer"></div>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        var apiUrl = 'http://localhost:8080/api/apioptionmaster/';
+    $(document).ready(function () {
+      RenderGrid();
+    });
+
+        function Insert_optionDetails() {
+        var optionName = $('#OptionName').val();
+        var optionCode = $('#OptionCode').val();
+      $.ajax({
+        url: apiUrl,
+        type: "Post",
+        dataType: 'json',
+          data: { "OptionName": optionName, "OptionCode": optionCode, "CreatedDate": "12/12/2018" },
+        success: function (data) {
+          var div = "<div><a href='#' class='close' data-dismiss='alert'>×</a><strong>" + "Successfully Inserted" + "</strong></div>";
+          $("#divMessage").html(div);
+          $("#divMessage").show();
+          $('#entityModal').modal('hide');
+          RenderGrid();
+        }
+      });
+    }
+
+    function UpdateDetails() {
+        var optionName = $('#OptionName').val();
+        var optionCode = $('#OptionCode').val();
+        var optionId = $('#OptionId').val();
+      $.ajax({
+        url: apiUrl,
+        method : "Put",
+        dataType: 'json',
+          data: { "OptionName": optionName, "OptionCode": optionCode, "CreatedDate": "12/12/2018", "OptionId": optionId },
+        success: function (data) {
+          var div = "<div><a href='#' class='close' data-dismiss='alert'>×</a><strong>" + "Successfully Updated" + "</strong></div>";
+          $("#divMessage").html(div);
+          $("#divMessage").show();
+          $('#entityModal').modal('hide');
+          RenderGrid();
+        }
+      });
+    }
+
+    function DeleteConfirmed() {
+      var optionId = $('#OptionId').val();
+      $.ajax({
+        url: apiUrl+'/DeleteOption/' + optionId,
+        method: "Post",
+        dataType: 'json',
+        //data: { "id": optionid },
+        success: function (data) {
+          var div = "<div><a href='#' class='close' data-dismiss='alert'>×</a><strong>" + "Successfully Deleted" + "</strong></div>";
+          $("#divMessage").html(div);
+          $("#divMessage").show();
+          $('#entityModal').modal('hide');
+          RenderGrid();
+        }
+      });
+    }
+
+    function RenderGrid() {
+      $.ajax({
+        url: apiUrl,
+        type: "GET",
+        dataType: 'json',
+        success: function (data) {
+          $('#entityTable').DataTable({
+            destroy: true,
+            data: data,
+            columns: [
+              { 'data': 'OptionId' },
+              { 'data': 'OptionCode' },
+              { 'data': 'OptionName' },
+              { 'data': 'CreatedDate' },
+              { 'data': 'CreatedBy' },
+              { 'data': 'LastModifiedBy' },
+              { 'data': 'LastModifiedDate' },
+              {
+                'data': 'OptionId',
+                "bSearchable": false,
+                "bSortable": false,
+                "render": function (OptionId) {
+                  // oObj.aData[0] returns the RoleId
+                  return '<a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/OptionMaster/Edit/?id=' +OptionId + '>Edit</a> | <a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/OptionMaster/Delete/?id=' + OptionId + '>Delete</a> | <a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/OptionMaster/Details/?id=' + OptionId + '>Details</a>';
+                  //return '<a data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#Container" data-toggle="modal" href=/Home/Edit/' + TopicId + '>Edit</a> |<a data-ajax="true" data-toggle="modal" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#Container" href=/Home/Delete/' + TopicId + '>Delete</a> |<a data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#Container" href=/Home/Details/' + TopicId + '>Details</a>'
+
+                }
+              }
+            ]
+          });
+        }
+      });
+    }
+    </script>
+}
+
+

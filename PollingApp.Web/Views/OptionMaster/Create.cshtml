@@ -1,0 +1,37 @@
+﻿
+@model PollingApp.Models.OptionMaster
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+@using (Ajax.BeginForm("Create", new AjaxOptions() { }))
+{
+    <div id="entityModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal" aria-hidden="true">×</a>
+                    <h3 id="myModalLabel">@Html.Raw("Create Option")</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="span12">
+                        @Html.LabelFor(model => model.OptionCode)
+                        @Html.TextBoxFor(model => model.OptionCode)
+                        @Html.ValidationMessageFor(model => model.OptionCode)
+                    </div>
+                    <div class="span12">
+                        @Html.LabelFor(model => model.OptionName)
+                        @Html.EditorFor(model => model.OptionName)
+                        @Html.ValidationMessageFor(model => model.OptionName)
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-primary" type="button" value="Save" OnClick="Insert_optionDetails()" />
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
