@@ -52,6 +52,7 @@
     <Compile Include="CategoryMaster.cs" />
     <Compile Include="CategoryTopicMapping.cs" />
     <Compile Include="Mapping\AppRoleMap.cs" />
+    <Compile Include="Mapping\CategoryMasterMap.cs" />
     <Compile Include="Mapping\CategoryTopicMappingMap.cs" />
     <Compile Include="Mapping\OptionMasterMap.cs" />
     <Compile Include="Mapping\TopicMasterMap.cs" />

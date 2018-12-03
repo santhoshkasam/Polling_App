@@ -24,9 +24,9 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Category", "Index", "CategoryMaster")</li>
             <li>@Html.ActionLink("Topic", "Index", "TopicMaster")</li>
             <li>@Html.ActionLink("Option", "Index", "OptionMaster")</li>
-            <li>@Html.ActionLink("Category", "Index", "OptionMaster")</li>
           </ul>
         </li>
         <li class="dropdown">
@@ -35,8 +35,8 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li>@Html.ActionLink("Category Topic", "Index", "OptionMaster")</li>
-            <li>@Html.ActionLink("Topic Option", "Index", "OptionMaster")</li>
+            <li>@Html.ActionLink("Category Topic", "Index", "CategoryTopicMapping")</li>
+            <li>@Html.ActionLink("Topic Option", "Index", "TopicOptionMapping")</li>
           </ul>
         </li>
         <li>

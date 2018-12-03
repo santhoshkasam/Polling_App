@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AppRoleController.cs" />
+    <Compile Include="Controllers\CategoryMasterController.cs" />
     <Compile Include="Controllers\CategoryTopicMappingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OptionMasterController.cs" />
@@ -430,7 +431,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="SubmitPoll.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -470,6 +470,13 @@
     <Content Include="Views\TopicOptionMapping\TopicOptionMappingList.cshtml" />
     <Content Include="Views\TopicOptionMapping\_TopicOptionMappingDetails.cshtml" />
     <Content Include="Views\Poll\Index.cshtml" />
+    <Content Include="Views\CategoryMaster\CategoryList.cshtml" />
+    <Content Include="Views\CategoryMaster\Create.cshtml" />
+    <Content Include="Views\CategoryMaster\Delete.cshtml" />
+    <Content Include="Views\CategoryMaster\Details.cshtml" />
+    <Content Include="Views\CategoryMaster\Edit.cshtml" />
+    <Content Include="Views\CategoryMaster\Index.cshtml" />
+    <Content Include="Views\CategoryMaster\_CategoryMasterDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

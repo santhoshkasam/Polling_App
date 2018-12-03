@@ -50,10 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRoleRepo.cs" />
+    <Compile Include="CategoryMasterRepo.cs" />
     <Compile Include="CategoryTopicMappingRepo.cs" />
     <Compile Include="CustomDbExceptionHandler.cs" />
     <Compile Include="ForiegnKeyException.cs" />
     <Compile Include="IAppRoleRepo.cs" />
+    <Compile Include="ICategoryMasterRepo.cs" />
     <Compile Include="ICategoryTopicMappingRepo.cs" />
     <Compile Include="IOptionMasterRepo.cs" />
     <Compile Include="IRepository.cs" />

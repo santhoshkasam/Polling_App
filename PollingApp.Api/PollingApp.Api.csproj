@@ -153,6 +153,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BootStrapper.cs" />
     <Compile Include="Controllers\ApiAppRoleController.cs" />
+    <Compile Include="Controllers\ApiCategoryMasterController.cs" />
     <Compile Include="Controllers\ApiCategoryTopicMappingController.cs" />
     <Compile Include="Controllers\ApiOptionMasterController.cs" />
     <Compile Include="Controllers\ApiTopicMasterController.cs" />
