@@ -10,7 +10,6 @@
     }
   );
 });
-
 function ShowEntityModal(result) {
   if (result) {
     if (result.responseJSON) {

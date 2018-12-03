@@ -477,6 +477,8 @@
     <Content Include="Views\CategoryMaster\Edit.cshtml" />
     <Content Include="Views\CategoryMaster\Index.cshtml" />
     <Content Include="Views\CategoryMaster\_CategoryMasterDetails.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\string.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,10 @@
+﻿@model string
+
+@if (string.IsNullOrEmpty(Convert.ToString(Model)))
+{ 
+  @: -
+}
+else
+{
+  @Model
+}

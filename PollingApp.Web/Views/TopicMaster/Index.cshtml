@@ -12,13 +12,9 @@
   <table class="row-border compact stripe hover dataTable" id="entityTable">
     <thead>
       <tr>
-        <th>@Html.DisplayNameFor(model => model.TopicId)   </th>
         <th>@Html.DisplayNameFor(model => model.TopicCode)   </th>
         <th>@Html.DisplayNameFor(model => model.TopicName)   </th>
         <th>@Html.DisplayNameFor(model => model.CreatedDate)   </th>
-        <th>@Html.DisplayNameFor(model => model.CreatedBy)   </th>
-        <th>@Html.DisplayNameFor(model => model.LastModifiedBy)    </th>
-        <th>@Html.DisplayNameFor(model => model.LastModifieddate)   </th>
         <th>@Html.Raw("Actions")</th>
       </tr>
     </thead>
@@ -35,8 +31,10 @@
 @section scripts
 {
   @Scripts.Render("~/bundles/jqueryval")
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+ 
   <script type="text/javascript">
-      var apiUrl = 'http://localhost:8080/api/apitopicmaster/';
+    var apiUrl = 'http://localhost:8080/api/apitopicmaster/';
     $(document).ready(function () {
       RenderGrid();
     });
@@ -65,7 +63,7 @@
       var topicId = $('#TopicId').val();
       $.ajax({
         url: apiUrl,
-        method : "Put",
+        method: "Put",
         dataType: 'json',
         data: { "TopicName": topicName, "TopicCode": topicCode, "CreatedDate": "12/12/2018", "TopicId": topicId },
         success: function (data) {
@@ -81,7 +79,7 @@
     function DeleteConfirmed() {
       var topicId = $('#TopicId').val();
       $.ajax({
-        url: apiUrl+'/DeleteTopic/' + topicId,
+        url: apiUrl + '/DeleteTopic/' + topicId,
         method: "Post",
         dataType: 'json',
         //data: { "id": topicId },
@@ -107,13 +105,13 @@
             destroy: true,
             data: data,
             columns: [
-              { 'data': 'TopicId' },
               { 'data': 'TopicCode' },
               { 'data': 'TopicName' },
-              { 'data': 'CreatedDate' },
-              { 'data': 'CreatedBy' },
-              { 'data': 'LastModifiedBy' },
-              { 'data': 'LastModifieddate' },
+              {
+                'data': 'Created Date', render: function (d) {
+                  return moment(d).format('DD/MM/YYYY');
+                } },
+            
               {
                 'data': 'TopicId',
                 "bSearchable": false,
