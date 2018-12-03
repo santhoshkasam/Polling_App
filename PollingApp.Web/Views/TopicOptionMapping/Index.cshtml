@@ -31,14 +31,12 @@
 
 @section scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-
-        var apiUrl = 'http://localhost:8080/api/ApiTopicOptionMapping/';
-        $(document).ready(function () {
-            RenderGrid();
-        });
-
+  @Scripts.Render("~/bundles/jqueryval")
+  <script type="text/javascript">
+    var apiUrl = 'http://localhost:8080/api/apiTopicOptionMapping/';
+    $(document).ready(function () {
+      RenderGrid();
+    });
         function insertdetails() {
             var topicId = $('#TopicId').val();
             //alert(topicId);
