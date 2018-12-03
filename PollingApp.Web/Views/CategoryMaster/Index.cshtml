@@ -1,28 +1,28 @@
-﻿@*@model List<PollingApp.Models.TopicMaster>*@
-@model PollingApp.Models.TopicMaster
+﻿@*@model List<PollingApp.Models.>*@
+@model PollingApp.Models.CategoryMaster
 @{
-  ViewBag.Title = "Topic";
+    ViewBag.Title = "Category";
 }
 <head>
 
 </head>
-<h2>Topic</h2>
+<h2>Category</h2>
 
 <div id="entityData">
-  <table class="row-border compact stripe hover dataTable" id="entityTable">
-    <thead>
-      <tr>
-        <th>@Html.DisplayNameFor(model => model.TopicId)   </th>
-        <th>@Html.DisplayNameFor(model => model.TopicCode)   </th>
-        <th>@Html.DisplayNameFor(model => model.TopicName)   </th>
-        <th>@Html.DisplayNameFor(model => model.CreatedDate)   </th>
-        <th>@Html.DisplayNameFor(model => model.CreatedBy)   </th>
-        <th>@Html.DisplayNameFor(model => model.LastModifiedBy)    </th>
-        <th>@Html.DisplayNameFor(model => model.LastModifieddate)   </th>
-        <th>@Html.Raw("Actions")</th>
-      </tr>
-    </thead>
-  </table>
+    <table class="row-border compact stripe hover dataTable" id="entityTable">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CategoryId)   </th>
+                <th>@Html.DisplayNameFor(model => model.CategoryCode)   </th>
+                <th>@Html.DisplayNameFor(model => model.CategoryName)   </th>
+                <th>@Html.DisplayNameFor(model => model.CreatedDate)   </th>
+                <th>@Html.DisplayNameFor(model => model.CreatedBy)   </th>
+                <th>@Html.DisplayNameFor(model => model.LastModifiedBy)    </th>
+                <th>@Html.DisplayNameFor(model => model.LastModifiedDate)   </th>
+                <th>@Html.Raw("Actions")</th>
+            </tr>
+        </thead>
+    </table>
 </div>
 
 @*@Html.Partial("TopicList")*@
@@ -34,21 +34,21 @@
 
 @section scripts
 {
-  @Scripts.Render("~/bundles/jqueryval")
-  <script type="text/javascript">
-      var apiUrl = 'http://localhost:8080/api/apitopicmaster/';
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        var apiUrl = 'http://localhost:8080/api/apicategorymaster/';
     $(document).ready(function () {
       RenderGrid();
     });
 
     function InsertDetails() {
-      var topicName = $('#TopicName').val();
-      var topicCode = $('#TopicCode').val();
+        var categoryName = $('#CategoryName').val();
+        var categoryCode = $('#CategoryCode').val();
       $.ajax({
         url: apiUrl,
         type: "Post",
         dataType: 'json',
-        data: { "TopicName": topicName, "TopicCode": topicCode, "CreatedDate": "12/12/2018" },
+          data: { "CategoryName": categoryName, "CategoryCode":categoryCode, "CreatedDate": "12/12/2018" },
         success: function (data) {
           var div = "<div><a href='#' class='close' data-dismiss='alert'>×</a><strong>" + "Successfully Inserted" + "</strong></div>";
           $("#divMessage").html(div);
@@ -60,14 +60,14 @@
     }
 
     function UpdateDetails() {
-      var topicName = $('#TopicName').val();
-      var topicCode = $('#TopicCode').val();
-      var topicId = $('#TopicId').val();
+        var categoryName = $('#CategoryName').val();
+        var categoryCode = $('#CategoryCode').val();
+        var categoryId = $('#CategoryId').val();
       $.ajax({
         url: apiUrl,
         method : "Put",
         dataType: 'json',
-        data: { "TopicName": topicName, "TopicCode": topicCode, "CreatedDate": "12/12/2018", "TopicId": topicId },
+          data: { "CategoryName": categoryName, "CategoryCode": categoryCode, "CreatedDate": "12/12/2018", "CategoryId": categoryId },
         success: function (data) {
           var div = "<div><a href='#' class='close' data-dismiss='alert'>×</a><strong>" + "Successfully Updated" + "</strong></div>";
           $("#divMessage").html(div);
@@ -79,12 +79,12 @@
     }
 
     function DeleteConfirmed() {
-      var topicId = $('#TopicId').val();
+        var categoryId = $('#CategoryId').val();
       $.ajax({
-        url: apiUrl+'/DeleteTopic/' + topicId,
+          url: apiUrl + '/DeleteCategory/' + categoryId,
         method: "Post",
         dataType: 'json',
-        //data: { "id": topicId },
+        //data: { "id": optionid },
         success: function (data) {
           var div = "<div><a href='#' class='close' data-dismiss='alert'>×</a><strong>" + "Successfully Deleted" + "</strong></div>";
           $("#divMessage").html(div);
@@ -96,8 +96,6 @@
     }
 
     function RenderGrid() {
-      $("#loading-block").show();
-
       $.ajax({
         url: apiUrl,
         type: "GET",
@@ -107,29 +105,31 @@
             destroy: true,
             data: data,
             columns: [
-              { 'data': 'TopicId' },
-              { 'data': 'TopicCode' },
-              { 'data': 'TopicName' },
+                { 'data': 'CategoryId' },
+                { 'data': 'CategoryCode' },
+                { 'data': 'CategoryName' },
               { 'data': 'CreatedDate' },
               { 'data': 'CreatedBy' },
               { 'data': 'LastModifiedBy' },
-              { 'data': 'LastModifieddate' },
+              { 'data': 'LastModifiedDate' },
               {
-                'data': 'TopicId',
+                  'data': 'CategoryId',
                 "bSearchable": false,
                 "bSortable": false,
-                "render": function (TopicId) {
+                  "render": function (CategoryId) {
                   // oObj.aData[0] returns the RoleId
-                  return '<a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/TopicMaster/Edit/?id=' + TopicId + '>Edit</a> | <a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/TopicMaster/Delete/?id=' + TopicId + '>Delete</a> | <a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/TopicMaster/Details/?id=' + TopicId + '>Details</a>';
+                      return '<a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/CategoryMaster/Edit/?id=' + CategoryId + '>Edit</a> | <a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/CategoryMaster/Delete/?id=' + CategoryId + '>Delete</a> | <a data-ajax="true" data-ajax-complete="ShowEntityModal" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-update="#entityContainer"  href=/CategoryMaster/Details/?id=' + CategoryId + '>Details</a>';
                   //return '<a data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#Container" data-toggle="modal" href=/Home/Edit/' + TopicId + '>Edit</a> |<a data-ajax="true" data-toggle="modal" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#Container" href=/Home/Delete/' + TopicId + '>Delete</a> |<a data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#Container" href=/Home/Details/' + TopicId + '>Details</a>'
 
                 }
               }
             ]
           });
-          $("#loading-block").hide();
         }
       });
     }
-  </script>
+    </script>
 }
+
+
+

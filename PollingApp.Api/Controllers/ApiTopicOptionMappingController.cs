@@ -1,47 +1,89 @@
-﻿using System;
+﻿using PollingApp.Models;
+using PollingApp.Repositories;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using PollingApp.Models;
-using PollingApp.Repositories;
 
 namespace PollingApp.Api.Controllers
 {
   public class ApiTopicOptionMappingController : ApiController
   {
-
+    // GET api/<controller>
     private readonly ITopicOptionMappingRepo _topicOptionMappingRepo;
+
     public ApiTopicOptionMappingController(ITopicOptionMappingRepo topicOptionMappingRepo)
     {
       _topicOptionMappingRepo = topicOptionMappingRepo;
     }
-    // GET: api/ApiTopicOptionMapping
     public IEnumerable<TopicOptionMapping> Get()
     {
       return _topicOptionMappingRepo.GetAll();
     }
 
-    // GET: api/ApiTopicOptionMapping/5
-    public string Get(int id)
+    // GET api/<controller>/5
+    public TopicOptionMapping Get(int id)
     {
-      return "value";
+      return _topicOptionMappingRepo.Get(id);
     }
 
-    // POST: api/ApiTopicOptionMapping
-    public void Post([FromBody]string value)
+    // POST api/<controller>
+    public HttpResponseMessage Post([FromBody]TopicOptionMapping topicoptionmapping)
     {
+      topicoptionmapping.CreatedDate = DateTime.Now;
+      if (ModelState.IsValid)
+      {
+        _topicOptionMappingRepo.Add(ref topicoptionmapping);
+      }
+      if (topicoptionmapping.TopicOptionMappingId > 0)
+      {
+        var response = Request.CreateResponse(HttpStatusCode.OK, "Inserted Successfully");
+        return response;
+      }
+      else
+      {
+        var response = Request.CreateResponse(HttpStatusCode.NotAcceptable, "Error Occured", Configuration.Formatters.JsonFormatter);
+        return response;
+      }
     }
 
-    // PUT: api/ApiTopicOptionMapping/5
-    public void Put(int id, [FromBody]string value)
+    // PUT api/<controller>/5
+    [HttpPut]
+    public HttpResponseMessage Put([FromBody]TopicOptionMapping topicoptionmapping)
     {
+      topicoptionmapping.LastModifiedDate = DateTime.Now;
+      if (ModelState.IsValid)
+      {
+        _topicOptionMappingRepo.Update(topicoptionmapping);
+      }
+      if (topicoptionmapping.TopicOptionMappingId > 0)
+      {
+        var response = Request.CreateResponse(HttpStatusCode.OK, "Updated Successfully");
+        return response;
+      }
+      else
+      {
+        var response = Request.CreateResponse(HttpStatusCode.NotAcceptable, "Error Occured", Configuration.Formatters.JsonFormatter);
+        return response;
+      }
     }
 
-    // DELETE: api/ApiTopicOptionMapping/5
-    public void Delete(int id)
+    // DELETE api/<controller>/5
+    [HttpDelete]
+    public HttpResponseMessage Delete(int id)
     {
+      try
+      {
+        _topicOptionMappingRepo.Delete(id);
+        var response = Request.CreateResponse(HttpStatusCode.OK, "Deleted Successfully");
+        return response;
+      }
+      catch (Exception)
+      {
+        var response = Request.CreateResponse(HttpStatusCode.NotAcceptable, "Error Occured", Configuration.Formatters.JsonFormatter);
+        return response;
+      }
     }
   }
 }

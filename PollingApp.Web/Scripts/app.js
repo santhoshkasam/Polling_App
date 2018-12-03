@@ -1,4 +1,17 @@
-﻿function ShowEntityModal(result) {
+﻿$(document).ready(function () {
+  $(".dropdown").hover(
+    function () {
+      $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideDown("400");
+      $(this).toggleClass('open');
+    },
+    function () {
+      $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideUp("400");
+      $(this).toggleClass('open');
+    }
+  );
+});
+
+function ShowEntityModal(result) {
   if (result) {
     if (result.responseJSON) {
       if (result.responseJSON.Status === "Failed") {
@@ -15,9 +28,9 @@
   $(".modal-body").animate({
     scrollTop: 0
   });
-  $(".modal").draggable({
-    handle: ".modal-header"
-  });
+  //$(".modal").draggable({
+  //  handle: ".modal-header"
+  //});
   return false;
 }
 

@@ -1,0 +1,28 @@
+﻿@model PollingApp.Models.OptionMaster
+
+<div class="span12">
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.OptionId)</div>
+  <div class="span3">@Html.DisplayFor(model => model.OptionId)</div>
+  @Html.HiddenFor(model => model.OptionId)
+</div>
+<div class="span12">
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.OptionCode)</div>
+  <div class="span3">@Html.DisplayFor(model => model.OptionCode)</div>
+</div>
+<div class="span12">
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.OptionName)</div>
+  <div class="span3">@Html.DisplayFor(model => model.OptionName)</div>
+</div>
+<div class="span12">
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CreatedDate)</div>
+  <div class="span3">@Html.DisplayFor(model => model.CreatedDate)</div>
+</div>
+@*<div class="span12">
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.ModifiedBy)</div>
+  <div class="span3">@Html.DisplayFor(model => model.AppUserModifiy.UserName)</div>
+</div>*@
+<div class="span12">
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.LastModifiedDate)</div>
+  <div class="span3">@Html.DisplayFor(model => model.LastModifiedDate)</div>
+</div>
+

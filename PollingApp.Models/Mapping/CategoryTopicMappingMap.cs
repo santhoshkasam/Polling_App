@@ -7,19 +7,18 @@ using System.Threading.Tasks;
 
 namespace PollingApp.Models.Mapping
 {
-   public  class TopicOptionMappingMap : EntityTypeConfiguration<TopicOptionMapping>
+    public class CategoryTopicMappingMap : EntityTypeConfiguration<CategoryTopicMapping>
     {
-        public TopicOptionMappingMap()
+        public CategoryTopicMappingMap()
         {
-            ToTable("TopicOptionMapping");
-            Property(t => t.TopicOptionMappingId).HasColumnName("TopicOptionMappingId");
+            ToTable("CategoryTopicMapping", "dbo");
+            Property(t => t.CategoryTopicMappingId).HasColumnName("CategoryTopicMappingId");
             Property(t => t.TopicId).HasColumnName("TopicId");
-            Property(t => t.OptionId).HasColumnName("OptionId");
+            Property(t => t.CategoryId).HasColumnName("CategoryId");
             Property(t => t.CreatedDate).HasColumnName("CreatedDate");
             Property(t => t.CreatedBy).HasColumnName("CreatedBy");
             Property(t => t.LastModifiedDate).HasColumnName("LastModifiedDate");
             Property(t => t.LastModifiedBy).HasColumnName("LastModifiedBy");
-
         }
     }
 }
