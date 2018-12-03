@@ -15,9 +15,9 @@
   $(".modal-body").animate({
     scrollTop: 0
   });
-  $(".modal").draggable({
-    handle: ".modal-header"
-  });
+  //$(".modal").draggable({
+  //  handle: ".modal-header"
+  //});
   return false;
 }
 
