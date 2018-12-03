@@ -8,45 +8,49 @@
   @Scripts.Render("~/bundles/modernizr")
   <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
   <style>
- 
   </style>
 </head>
 <body>
-  <div class="header">
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        @Html.ActionLink("Polling", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Masters
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
             <li>@Html.ActionLink("Topic", "Index", "TopicMaster")</li>
             <li>@Html.ActionLink("Option", "Index", "OptionMaster")</li>
-
-            <li>@Html.ActionLink("About", "About", "Home")</li>
-            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <li>@Html.ActionLink("Category", "Index", "OptionMaster")</li>
           </ul>
-        </div>
-      </div>
-
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Mapping
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Category Topic", "Index", "OptionMaster")</li>
+            <li>@Html.ActionLink("Topic Option", "Index", "OptionMaster")</li>
+          </ul>
+        </li>
+        <li>@Html.ActionLink("Submit Poll", "Index", "OptionMaster")</li>
+      </ul>
     </div>
-  </div>
+  </nav>
 
   <div class="container body-content">
     <div id="divMessage" class="span12 divMessage"></div>
     @RenderBody()
   </div>
-  <hr />
 
-  <footer>
-    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+  <footer class="fixed-bottom">
+    <p>&copy; @DateTime.Now.Year - Thomson Reuters</p>
   </footer>
   <div id="loading-block" style="display:none">
     <div class="modal-backdrop fade in" style="z-index: 1055"></div>
