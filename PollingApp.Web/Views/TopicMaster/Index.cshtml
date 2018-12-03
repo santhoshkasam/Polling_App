@@ -96,6 +96,8 @@
     }
 
     function RenderGrid() {
+      $("#loading-block").show();
+
       $.ajax({
         url: apiUrl,
         type: "GET",
@@ -125,6 +127,7 @@
               }
             ]
           });
+          $("#loading-block").hide();
         }
       });
     }
