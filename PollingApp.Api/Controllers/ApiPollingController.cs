@@ -30,8 +30,17 @@ namespace PollingApp.Api.Controllers
     }
 
     // POST: api/ApiPolling
-    public void Post([FromBody]string value)
+    public void Post([FromBody]List<Polling> polling)
     {
+      foreach (Polling item in polling)
+      {
+        item.SubmittedDate = DateTime.Now;
+        Polling p = item;
+        if (ModelState.IsValid)
+        {
+          _pollingRepo.Add(ref p);
+        }
+      }
     }
 
     // PUT: api/ApiPolling/5
@@ -47,7 +56,7 @@ namespace PollingApp.Api.Controllers
     [HttpPost]
     public List<TopicPolls> GetTopicWisePolls(int categroyId)
     {
-    var topicPolls = _pollingRepo.GetTopicPolls(categroyId);
+      var topicPolls = _pollingRepo.GetTopicPolls(categroyId);
       return topicPolls;
     }
 

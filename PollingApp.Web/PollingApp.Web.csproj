@@ -480,6 +480,9 @@
     <Content Include="Views\CategoryMaster\_CategoryMasterDetails.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\string.cshtml" />
+    <Content Include="Views\Polling\Create.cshtml" />
+    <Content Include="Views\Polling\Report.cshtml" />
+    <Content Include="Views\Polling\_GetTopicsWithOptions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

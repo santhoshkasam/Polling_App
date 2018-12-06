@@ -21,7 +21,6 @@ namespace PollingApp.Repositories
 
     public List<TopicPolls> GetTopicPolls(int CategoryId)
     {
-
       var categoryTopicMappingRepo = uow.GetRepository<CategoryTopicMapping>();
       var topicOptionMappingRepo = uow.GetRepository<TopicOptionMapping>();
 

@@ -85,5 +85,12 @@ namespace PollingApp.Api.Controllers
         return response;
       }
     }
+
+    [HttpGet]
+    public List<TopicWithOptions> GetTopicsWithOptions(int categroyId)
+    {
+      var topicOptions = _topicOptionMappingRepo.GetTopicsWithOptions(categroyId);
+      return topicOptions;
+    }
   }
 }

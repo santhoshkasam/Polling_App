@@ -1,0 +1,61 @@
+﻿@model PollingApp.Models.Polling
+@{
+  ViewBag.Title = "Report";
+}
+
+<h2>Report</h2>
+
+<div class="span12">
+  @Html.Raw("Category"):
+  @Html.DropDownList("CategoryId", (SelectList)ViewBag.TopicNameList, "Select", htmlAttributes: new { onchange = "GetListofTopics()" })
+</div>
+<hr />
+<div id="Report">
+</div>
+@section scripts
+{
+<script>
+  var apiUrl = 'http://localhost:8080/api/ApiPolling/GetTopicWisePolls/';
+  function GetListofTopics() {
+    var CategoryId = $('#CategoryId').val();
+    var items = '';
+
+    $.ajax({
+      url: apiUrl + '/?categroyId=' + CategoryId,
+      type: "Post",
+      dataType: 'json',
+      success: function (response) {
+        $.each(response, function (i, item) {
+          var topic = item.TopicName;
+          var optioncount = item.OptionNameWithCount.split('/');
+
+          items += "<div class=row><div class=col-xs-2>" + topic + "</div>"
+            + "<div class=progress width=100%>"
+
+          $.each(optioncount, function (j) {
+            if (j == 0) {
+              items += "<div id='success' class='progress-bar progress-bar-success' role='progressbar' style='width:" + (parseFloat(optioncount[j].split('-')[1]) / 8) * 100 + "%' >"
+                + optioncount[j].replace(' ', '') + "</div>"
+            }
+            else if (j == 1) {
+              items += "<div id='ok' class='progress-bar progress-bar-info' role='progressbar' style='width:" + (parseFloat(optioncount[j].split('-')[1]) / 8) * 100 + "%' >"
+                + optioncount[j].replace(' ', '') + "</div>"
+            }
+            else if (j == 2) {
+              items += "<div id='Warning' class='progress-bar progress-bar-warning' role='progressbar' style='width:" + (parseFloat(optioncount[j].split('-')[1]) / 8) * 100 + "%' >"
+                + optioncount[j].replace(' ', '') + "</div>"
+            }
+            else if (j == 3) {
+              items += "<div id='danger' class='progress-bar progress-bar-danger' role='progressbar' style='width:" + (parseFloat(optioncount[j].split('-')[1]) / 8) * 100 + "%' >"
+                + optioncount[j].replace(' ', '') + "</div>"
+            }
+          });
+          items += "</div></div>";
+        });
+        $("#Report").html(items);
+      }
+    });
+  }
+</script>
+}
+  

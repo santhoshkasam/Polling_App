@@ -9,5 +9,7 @@ namespace PollingApp.Repositories
 {
   public interface ITopicOptionMappingRepo: IRepository<TopicOptionMapping>
   {
+    List<TopicWithOptions> GetTopicsWithOptions(int CategoryId);
+    
   }
 }

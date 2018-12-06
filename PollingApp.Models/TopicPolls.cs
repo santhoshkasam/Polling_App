@@ -12,4 +12,11 @@ namespace PollingApp.Models
     public string OptionNameWithCount;
     public string Comments;
   }
+
+  public class TopicWithOptions
+  {
+    public string TopicName;
+    public string Options;
+    public string TopicOptionMappingId;
+  }
 }

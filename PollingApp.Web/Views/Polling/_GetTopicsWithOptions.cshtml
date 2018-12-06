@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PollingApp.Models.TopicWithOptions>
+
+
+@foreach (var item in Model)
+{
+  <div class="topic span12">
+    @Html.DisplayFor(i => item.TopicName)
+  </div>
+  for (int k = 0; k < item.Options.Split('/').Length; k++)
+  {
+    <div class="span12">
+      @Html.RadioButtonFor(j => item.Options.Split('/')[k], item.TopicOptionMappingId.Split('/')[k], htmlAttributes: new { @Name = item.TopicName }) @Html.Raw(item.Options.Split('/')[k])
+    </div>
+  }
+  <br />
+}
+<div class="span12">
+  @Html.Raw("Additional Comments")   <textarea cols="100" rows="1" />
+</div>
+<br />
+<input type="button" name="Submit" value="Submit" class="btn btn-primary" onclick="GetSelectedOptions()" />

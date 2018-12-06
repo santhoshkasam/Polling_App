@@ -32,18 +32,43 @@ namespace PollingApp.Web.Controllers
     // GET: Poll/Create
     public ActionResult Create()
     {
+      var lstTopics = GetCategoryMasters().OrderBy(o => o.CategoryName).ToList();
+      ViewBag.TopicNameList = new SelectList(lstTopics, "CategoryId", "CategoryName");
+
+
       return View();
     }
 
     // POST: Poll/Create
     [HttpPost]
-    public ActionResult Create(FormCollection collection)
+    public ActionResult Create(string[] selectedTopicOptionMappingId)
     {
       try
       {
-        // TODO: Add insert logic here
-
-        return RedirectToAction("Index");
+        List<Polling> pollings = new List<Polling>();
+        for (int i = 0; i < selectedTopicOptionMappingId.Length; i++)
+        {
+          Polling polling = new Polling();
+          polling.TopicOptionMappingId = Convert.ToInt32(selectedTopicOptionMappingId[i]);
+          polling.SubmittedDate = DateTime.Now;
+          pollings.Add(polling);
+        }
+        var myContent = JsonConvert.SerializeObject(pollings);
+        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+        var byteContent = new ByteArrayContent(buffer);
+        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        using (var client = new System.Net.Http.HttpClient())
+        {
+          var response = client.PostAsync("http://localhost:57203/api/ApiPolling", byteContent).Result;
+          using (HttpContent content = response.Content)
+          {
+            Task<string> result = content.ReadAsStringAsync();
+            Result = result.Result;
+          }
+        }
+        string json = Result;
+        var deserialized = JsonConvert.DeserializeObject<List<CategoryMaster>>(json);
+        return View("Index");
       }
       catch
       {
@@ -110,6 +135,31 @@ namespace PollingApp.Web.Controllers
       string json = Result;
       var deserialized = JsonConvert.DeserializeObject<List<CategoryMaster>>(json);
       return deserialized;
+    }
+
+    public ActionResult Report()
+    {
+      var lstTopics = GetCategoryMasters().OrderBy(o => o.CategoryName).ToList();
+      ViewBag.TopicNameList = new SelectList(lstTopics, "CategoryId", "CategoryName");
+      return View();
+    }
+    public ActionResult GetTopicsWithOptions(int id)
+    {
+      using (var client = new System.Net.Http.HttpClient())
+      {
+        UriBuilder builder = new UriBuilder("http://localhost:8080/api/ApiTopicOptionMapping/GetTopicsWithOptions");
+        builder.Query = "categroyId=" + id;
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        var response = client.GetAsync(builder.Uri).Result;
+        using (HttpContent content = response.Content)
+        {
+          Task<string> result = content.ReadAsStringAsync();
+          Result = result.Result;
+        }
+      }
+      string json = Result;
+      var deserialized = JsonConvert.DeserializeObject<List<TopicWithOptions>>(json);
+      return PartialView("_GetTopicsWithOptions", deserialized);
     }
   }
 }
