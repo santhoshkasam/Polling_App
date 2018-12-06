@@ -160,7 +160,7 @@
     <Compile Include="Controllers\CategoryTopicMappingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OptionMasterController.cs" />
-    <Compile Include="Controllers\PollController.cs" />
+    <Compile Include="Controllers\PollingController.cs" />
     <Compile Include="Controllers\TopicMasterController.cs" />
     <Compile Include="Controllers\TopicOptionMappingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -334,6 +334,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -469,7 +470,7 @@
     <Content Include="Views\TopicOptionMapping\Edit.cshtml" />
     <Content Include="Views\TopicOptionMapping\TopicOptionMappingList.cshtml" />
     <Content Include="Views\TopicOptionMapping\_TopicOptionMappingDetails.cshtml" />
-    <Content Include="Views\Poll\Index.cshtml" />
+    <Content Include="Views\Polling\Index.cshtml" />
     <Content Include="Views\CategoryMaster\CategoryList.cshtml" />
     <Content Include="Views\CategoryMaster\Create.cshtml" />
     <Content Include="Views\CategoryMaster\Delete.cshtml" />

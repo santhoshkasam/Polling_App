@@ -24,6 +24,7 @@ namespace PollingApp.Repositories
       OptionMasters.AsNoTracking();
       CategoryTopicMappings.AsNoTracking();
       CategoryMasters.AsNoTracking();
+      Pollings.AsNoTracking();
     }
     public DbSet<AppRole> AppRoles { get; set; }
     public DbSet<TopicMaster> TopicMasters { get; set; }
@@ -31,6 +32,8 @@ namespace PollingApp.Repositories
     public DbSet<CategoryMaster> CategoryMasters { get; set; }
     public DbSet<CategoryTopicMapping> CategoryTopicMappings { get; set; }
     public DbSet<OptionMaster> OptionMasters { get; set; }
+    public DbSet<Polling> Pollings { get; set; }
+
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
       modelBuilder.Configurations.Add(new AppRoleMap());
@@ -39,6 +42,7 @@ namespace PollingApp.Repositories
       modelBuilder.Configurations.Add(new OptionMasterMap());
       modelBuilder.Configurations.Add(new CategoryTopicMappingMap());
       modelBuilder.Configurations.Add(new CategoryMasterMap());
+      modelBuilder.Configurations.Add(new PollingMap());
     }
   }
 }

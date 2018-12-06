@@ -55,12 +55,15 @@
     <Compile Include="Mapping\CategoryMasterMap.cs" />
     <Compile Include="Mapping\CategoryTopicMappingMap.cs" />
     <Compile Include="Mapping\OptionMasterMap.cs" />
+    <Compile Include="Mapping\PollingMap.cs" />
     <Compile Include="Mapping\TopicMasterMap.cs" />
     <Compile Include="Mapping\TopicOptionMappingMap.cs" />
     <Compile Include="OptionMaster.cs" />
+    <Compile Include="Polling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TopicMaster.cs" />
     <Compile Include="TopicOptionMapping.cs" />
+    <Compile Include="TopicPolls.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

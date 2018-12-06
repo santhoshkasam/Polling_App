@@ -45,7 +45,6 @@ namespace PollingApp.Web.Controllers
     public ActionResult Create()
     {
       var lstTopics = GetTopicMasters().OrderBy(o => o.TopicName).ToList();
-
       ViewBag.TopicNameList = new SelectList(lstTopics, "TopicId", "TopicName");
       var lstOptions = GetOptionMasters().OrderBy(o => o.OptionName).ToList();
       ViewBag.OptionNameList = new SelectList(lstOptions, "OptionId", "OptionName");

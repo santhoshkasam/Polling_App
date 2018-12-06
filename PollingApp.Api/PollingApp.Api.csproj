@@ -156,6 +156,7 @@
     <Compile Include="Controllers\ApiCategoryMasterController.cs" />
     <Compile Include="Controllers\ApiCategoryTopicMappingController.cs" />
     <Compile Include="Controllers\ApiOptionMasterController.cs" />
+    <Compile Include="Controllers\ApiPollingController.cs" />
     <Compile Include="Controllers\ApiTopicMasterController.cs" />
     <Compile Include="Controllers\ApiTopicOptionMappingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

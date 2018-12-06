@@ -22,7 +22,7 @@ namespace PollingApp.Models
         public int? LastModifiedBy { get; set; }
 
         [ForeignKey("TopicId")]
-        public virtual TopicMaster TopicMaster { get; set; }
+        public virtual TopicMaster  TopicMaster { get; set; }
 
         [ForeignKey("OptionId")]
         public virtual OptionMaster OptionMaster { get; set; }
