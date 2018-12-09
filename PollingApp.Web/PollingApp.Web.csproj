@@ -484,6 +484,11 @@
     <Content Include="Views\Polling\Report.cshtml" />
     <Content Include="Views\Polling\_GetTopicsWithOptions.cshtml" />
     <Content Include="Views\Polling\SuccessMessage.cshtml" />
+    <Content Include="Views\CategoryTopicMapping\CategoryTopicMappingList.cshtml" />
+    <Content Include="Views\CategoryTopicMapping\Create.cshtml" />
+    <Content Include="Views\CategoryTopicMapping\Delete.cshtml" />
+    <Content Include="Views\CategoryTopicMapping\Details.cshtml" />
+    <Content Include="Views\CategoryTopicMapping\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
