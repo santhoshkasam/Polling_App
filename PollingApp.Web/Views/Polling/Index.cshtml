@@ -11,6 +11,9 @@
 <hr />
 <div id="SubmitPolls">
 </div>
+<div>
+
+</div>
 @section scripts
 {
   <script>
@@ -27,17 +30,20 @@
     function GetSelectedOptions() {
       var arraySelected = [];
       var selectedRadio = [];
+      var comments = $('textarea#comment').val();
       var all = $(".topic").map(function () {
         arraySelected.push(this.innerHTML.trim());
       });
       for (var i = 0; i < arraySelected.length; i++) {
-        var radioValue = $("input[name='" + arraySelected[i].replace(' ','') + "']:checked").val();
+        var radioValue = $("input[name='" + arraySelected[i].replace(' ', '') + "']:checked").val();
         selectedRadio.push(radioValue);
       }
-      alert(selectedRadio);
-      $.post("/Polling/Create", { selectedTopicOptionMappingId: selectedRadio }, function (data) {
-        $('#divMessage').html("Success");
+      $.post("/Polling/Create", { selectedTopicOptionMappingId: selectedRadio, comments: comments }, function (data) {
+        $('#divMessage').html(data);
+        $('#entityModal').modal('show');
+
       });
     }
+  
   </script>
 }

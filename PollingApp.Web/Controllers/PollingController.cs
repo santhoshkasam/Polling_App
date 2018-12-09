@@ -41,7 +41,7 @@ namespace PollingApp.Web.Controllers
 
     // POST: Poll/Create
     [HttpPost]
-    public ActionResult Create(string[] selectedTopicOptionMappingId)
+    public ActionResult Create(string[] selectedTopicOptionMappingId, string comments)
     {
       try
       {
@@ -51,6 +51,7 @@ namespace PollingApp.Web.Controllers
           Polling polling = new Polling();
           polling.TopicOptionMappingId = Convert.ToInt32(selectedTopicOptionMappingId[i]);
           polling.SubmittedDate = DateTime.Now;
+          polling.Comments = comments;
           pollings.Add(polling);
         }
         var myContent = JsonConvert.SerializeObject(pollings);
@@ -68,7 +69,7 @@ namespace PollingApp.Web.Controllers
         }
         string json = Result;
         var deserialized = JsonConvert.DeserializeObject<List<CategoryMaster>>(json);
-        return View("Index");
+        return PartialView("SuccessMessage");
       }
       catch
       {

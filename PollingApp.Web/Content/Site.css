@@ -4,7 +4,9 @@
 body {
   font-family: 'Open Sans', 'sans-serif';
 }
-
+textarea {
+  resize: none;
+}
 .mega-dropdown {
   position: static !important;
 }

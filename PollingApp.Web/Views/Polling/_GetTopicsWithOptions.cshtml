@@ -15,7 +15,16 @@
   <br />
 }
 <div class="span12">
-  @Html.Raw("Additional Comments")   <textarea cols="100" rows="1" />
+  <div class="col-md-2" style="padding:0px">
+    @Html.Raw("Additional Comments")
+  </div>
+  <div class="col-md-9">
+    <textarea cols="100" rows="3" id="comment" style="max-width:none" placeholder="Write something here..." />
+  </div>
 </div>
-<br />
-<input type="button" name="Submit" value="Submit" class="btn btn-primary" onclick="GetSelectedOptions()" />
+<br/>
+<div class="span12">
+  <div class="col-md-6" style="padding:15px 0px 0px 0px">
+    <input type="button" name="Submit" value="Submit" class="btn btn-primary" onclick="GetSelectedOptions()" />
+  </div>
+</div>
