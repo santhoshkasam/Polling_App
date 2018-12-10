@@ -54,6 +54,7 @@ namespace PollingApp.Api.Controllers
     }
 
     [HttpPost]
+    [Route("GetTopicWisePolls")]
     public List<TopicPolls> GetTopicWisePolls(int categroyId)
     {
       var topicPolls = _pollingRepo.GetTopicPolls(categroyId);

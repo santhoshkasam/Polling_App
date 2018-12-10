@@ -87,6 +87,7 @@ namespace PollingApp.Api.Controllers
     }
 
     [HttpGet]
+    [Route("GetTopicsWithOptions")]
     public List<TopicWithOptions> GetTopicsWithOptions(int categroyId)
     {
       var topicOptions = _topicOptionMappingRepo.GetTopicsWithOptions(categroyId);
