@@ -9,19 +9,21 @@
   @Html.DropDownList("CategoryId", (SelectList)ViewBag.TopicNameList, "Select", htmlAttributes: new { onchange = "GetTopicswithOptions()" })
 </div>
 <hr />
+<div class="alert alert-danger" id="alertbox" style="display:none">
+  <strong>Danger!</strong> Please select one of the option for all the listed Topics.
+</div>
 <div id="SubmitPolls">
 </div>
-<div>
 
-</div>
 @section scripts
 {
   <script>
     $(document).ready(function myfunction() {
-
+      $("#alertbox").hide();
     });
     var apiUrl = 'http://localhost:8080/api/ApiPolling/GetTopicWisePolls/';
     function GetTopicswithOptions() {
+      $("#alertbox").hide();
       var CategoryId = $('#CategoryId').val();
       $.get("/Polling/GetTopicsWithOptions", { id: CategoryId }, function (data) {
         $('#SubmitPolls').html(data);
@@ -35,15 +37,22 @@
         arraySelected.push(this.innerHTML.trim());
       });
       for (var i = 0; i < arraySelected.length; i++) {
-        var radioValue = $("input[name='" + arraySelected[i].replace(' ', '') + "']:checked").val();
-        selectedRadio.push(radioValue);
+        if ($("input[name='" + arraySelected[i].replace(' ', '') + "']").is(':checked')) {
+          var radioValue = $("input[name='" + arraySelected[i].replace(' ', '') + "']:checked").val();
+          selectedRadio.push(radioValue);
+          $.post("/Polling/Create", { selectedTopicOptionMappingId: selectedRadio, comments: comments }, function (data) {
+            $('#divMessage').html(data);
+            $('#entityModal').modal('show');
+            $("#alertbox").hide();
+            return true;
+          });
+        }
+        else {
+          $("#alertbox").show();
+          return false;
+        }
       }
-      $.post("/Polling/Create", { selectedTopicOptionMappingId: selectedRadio, comments: comments }, function (data) {
-        $('#divMessage').html(data);
-        $('#entityModal').modal('show');
-
-      });
     }
-  
+
   </script>
 }

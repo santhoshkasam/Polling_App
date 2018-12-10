@@ -4,7 +4,7 @@
 @foreach (var item in Model)
 {
   <div class="topic span12">
-    @Html.DisplayFor(i => item.TopicName)
+    <b> @Html.DisplayFor(i => item.TopicName)</b>
   </div>
   for (int k = 0; k < item.Options.Split('/').Length; k++)
   {
@@ -16,8 +16,8 @@
 }
 <div class="span12">
   <div class="col-md-2" style="padding:0px">
-    @Html.Raw("Additional Comments")
-  </div>
+    <b>  @Html.Raw("Additional Comments")</b>
+</div>
   <div class="col-md-9">
     <textarea cols="100" rows="3" id="comment" style="max-width:none" placeholder="Write something here..." />
   </div>

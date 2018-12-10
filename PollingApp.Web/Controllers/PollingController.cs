@@ -60,7 +60,7 @@ namespace PollingApp.Web.Controllers
         byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         using (var client = new System.Net.Http.HttpClient())
         {
-          var response = client.PostAsync("http://localhost:57203/api/ApiPolling", byteContent).Result;
+          var response = client.PostAsync("http://localhost:8080/api/ApiPolling", byteContent).Result;
           using (HttpContent content = response.Content)
           {
             Task<string> result = content.ReadAsStringAsync();
