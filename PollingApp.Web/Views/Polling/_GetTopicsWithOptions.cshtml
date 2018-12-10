@@ -1,15 +1,25 @@
 ﻿@model IEnumerable<PollingApp.Models.TopicWithOptions>
-
+@using System.Text.RegularExpressions
 
 @foreach (var item in Model)
 {
-  <div class="topic span12">
+
+  <div class="span12">
     <b> @Html.DisplayFor(i => item.TopicName)</b>
   </div>
+  string result = "";
+  {
+    string pattern = @"[^0-9a-zA-Z]+";
+    string input = item.TopicName.ToString();
+    string replacement = " ";
+    Regex rgx = new Regex(pattern);
+    result = rgx.Replace(input, replacement);
+    <div style="display:none" class="topic">@result.Replace(" ", "").Trim()</div>
+  }
   for (int k = 0; k < item.Options.Split('/').Length; k++)
   {
     <div class="span12">
-      @Html.RadioButtonFor(j => item.Options.Split('/')[k], item.TopicOptionMappingId.Split('/')[k], htmlAttributes: new { @Name = item.TopicName }) @Html.Raw(item.Options.Split('/')[k])
+      @Html.RadioButtonFor(j => item.Options.Split('/')[k], item.TopicOptionMappingId.Split('/')[k], htmlAttributes: new { @Name = result.Replace(" ", "").Trim() }) @Html.Raw(item.Options.Split('/')[k])
     </div>
   }
   <br />
@@ -17,14 +27,14 @@
 <div class="span12">
   <div class="col-md-2" style="padding:0px">
     <b>  @Html.Raw("Additional Comments")</b>
-</div>
+  </div>
   <div class="col-md-9">
     <textarea cols="100" rows="3" id="comment" style="max-width:none" placeholder="Write something here..." />
   </div>
 </div>
-<br/>
+<br />
 <div class="span12">
-  <div class="col-md-6" style="padding:15px 0px 0px 0px">
+  <div class="col-md-6" style="padding:15px 0px 15px 0px">
     <input type="button" name="Submit" value="Submit" class="btn btn-primary" onclick="GetSelectedOptions()" />
   </div>
 </div>

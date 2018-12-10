@@ -24,6 +24,7 @@
     var apiUrl = 'http://localhost:8080/api/ApiPolling/GetTopicWisePolls/';
     function GetTopicswithOptions() {
       $("#alertbox").hide();
+      $('#SubmitPolls').html("");
       var CategoryId = $('#CategoryId').val();
       $.get("/Polling/GetTopicsWithOptions", { id: CategoryId }, function (data) {
         $('#SubmitPolls').html(data);
@@ -37,22 +38,23 @@
         arraySelected.push(this.innerHTML.trim());
       });
       for (var i = 0; i < arraySelected.length; i++) {
-        if ($("input[name='" + arraySelected[i].replace(' ', '') + "']").is(':checked')) {
-          var radioValue = $("input[name='" + arraySelected[i].replace(' ', '') + "']:checked").val();
+        if ($("input[name='" + arraySelected[i] + "']").is(':checked')) {
+          var radioValue = $("input[name='" + arraySelected[i] + "']:checked").val();
           selectedRadio.push(radioValue);
-          $.post("/Polling/Create", { selectedTopicOptionMappingId: selectedRadio, comments: comments }, function (data) {
-            $('#divMessage').html(data);
-            $('#entityModal').modal('show');
-            $("#alertbox").hide();
-            return true;
-          });
         }
         else {
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
           $("#alertbox").show();
+          $('#entityModal').modal('hide');
           return false;
         }
       }
+      $.post("/Polling/Create", { selectedTopicOptionMappingId: selectedRadio, comments: comments }, function (data) {
+        $('#divMessage').html(data);
+        $('#entityModal').modal('show');
+        $("#alertbox").hide();
+      });
     }
-
   </script>
 }

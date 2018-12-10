@@ -27,5 +27,7 @@ namespace PollingApp.Models
     public DateTime? LastModifiedDate { get; set; }
 
     public virtual TopicMaster TopicMaster { get; set; }
+    public virtual CategoryMaster TopicMaster { get; set; }
+
   }
 }

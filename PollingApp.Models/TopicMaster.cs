@@ -13,11 +13,11 @@ namespace PollingApp.Models
     [Key]
     public int TopicId { get; set; }
     [Required]
-    [MaxLength(10)]
+    [MaxLength(50)]
     [Display(Name = "Topic Code")]
     public string TopicCode { get; set; }
     [Required]
-    [MaxLength(50)]
+    [MaxLength(100)]
     [Display(Name = "Topic Name")]
     public string TopicName { get; set; }
     [Required]

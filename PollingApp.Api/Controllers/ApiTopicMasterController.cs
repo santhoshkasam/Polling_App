@@ -70,7 +70,7 @@ namespace PollingApp.Api.Controllers
     }
 
     // DELETE: api/ApiTopicMaster/5
-    [HttpPost]
+    [HttpDelete]
     public HttpResponseMessage DeleteTopic(int id)
     {
       try

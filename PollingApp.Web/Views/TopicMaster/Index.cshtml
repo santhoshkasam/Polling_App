@@ -80,7 +80,7 @@
       var topicId = $('#TopicId').val();
       $.ajax({
         url: apiUrl + '/DeleteTopic/' + topicId,
-        method: "Post",
+        method: "Delete",
         dataType: 'json',
         //data: { "id": topicId },
         success: function (data) {

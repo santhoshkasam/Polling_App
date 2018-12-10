@@ -1,27 +1,24 @@
 ﻿@model PollingApp.Models.CategoryMaster
 
+
+@Html.HiddenFor(model => model.CategoryId)
 <div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CategoryId)</div>
-    <div class="span3">@Html.DisplayFor(model => model.CategoryId)</div>
-    @Html.HiddenFor(model => model.CategoryId)
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CategoryCode)</div>
+  <div class="span3">@Html.DisplayFor(model => model.CategoryCode)</div>
 </div>
 <div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CategoryCode)</div>
-    <div class="span3">@Html.DisplayFor(model => model.CategoryCode)</div>
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CategoryName)</div>
+  <div class="span3">@Html.DisplayFor(model => model.CategoryName)</div>
 </div>
 <div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CategoryName)</div>
-    <div class="span3">@Html.DisplayFor(model => model.CategoryName)</div>
-</div>
-<div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CreatedDate)</div>
-    <div class="span3">@Html.DisplayFor(model => model.CreatedDate)</div>
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CreatedDate)</div>
+  <div class="span3">@Html.DisplayFor(model => model.CreatedDate)</div>
 </div>
 @*<div class="span12">
-      <div class="span2 fontBold">@Html.DisplayNameFor(model => model.ModifiedBy)</div>
-      <div class="span3">@Html.DisplayFor(model => model.AppUserModifiy.UserName)</div>
-    </div>*@
+    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.ModifiedBy)</div>
+    <div class="span3">@Html.DisplayFor(model => model.AppUserModifiy.UserName)</div>
+  </div>*@
 <div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.LastModifiedDate)</div>
-    <div class="span3">@Html.DisplayFor(model => model.LastModifiedDate)</div>
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.LastModifiedDate)</div>
+  <div class="span3">@Html.DisplayFor(model => model.LastModifiedDate)</div>
 </div>

@@ -1,25 +1,23 @@
 ﻿
 @model PollingApp.Models.CategoryTopicMapping
+
+@Html.HiddenFor(model => model.CategoryTopicMappingId)
+
 <div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CategoryTopicMappingId)</div>
-    <div class="span3">@Html.DisplayFor(model => model.CategoryTopicMappingId)</div>
-    @Html.HiddenFor(model => model.CategoryTopicMappingId)
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CategoryMaster.CategoryId)</div>
+  <div class="span3">@Html.DisplayFor(model => model.CategoryMaster.CategoryId)</div>
 </div>
 <div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CategoryMaster.CategoryId)</div>
-    <div class="span3">@Html.DisplayFor(model => model.CategoryMaster.CategoryId)</div>
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.TopicMaster.TopicName)</div>
+  <div class="span3">@Html.DisplayFor(model => model.TopicMaster.TopicName)</div>
 </div>
 <div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.TopicMaster.TopicName)</div>
-    <div class="span3">@Html.DisplayFor(model => model.TopicMaster.TopicName)</div>
-</div>
-<div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CreatedDate)</div>
-    <div class="span3">@Html.DisplayFor(model => model.CreatedDate)</div>
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.CreatedDate)</div>
+  <div class="span3">@Html.DisplayFor(model => model.CreatedDate)</div>
 </div>
 
 <div class="span12">
-    <div class="span2 fontBold">@Html.DisplayNameFor(model => model.LastModifiedDate)</div>
-    <div class="span3">@Html.DisplayFor(model => model.LastModifiedDate)</div>
+  <div class="span2 fontBold">@Html.DisplayNameFor(model => model.LastModifiedDate)</div>
+  <div class="span3">@Html.DisplayFor(model => model.LastModifiedDate)</div>
 </div>
 
