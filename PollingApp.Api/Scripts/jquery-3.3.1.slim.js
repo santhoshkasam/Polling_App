@@ -39,7 +39,7 @@
 // Pass this if window is not defined yet
 } )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
 
-// Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
+// Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 12, Safari 5.1 - 9+, iOS 6 - 9.1
 // throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
 // arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
 // enough that all such attempts are guarded in a try block.
@@ -723,7 +723,7 @@ function Sizzle( selector, context, results, seed ) {
 
 	// Return early from calls with invalid selector or context
 	if ( typeof selector !== "string" || !selector ||
-		nodeType !== 1 && nodeType !== 9 && nodeType !== 11 ) {
+		nodeType !== 1 && nodeType !== 9 && nodeType !== 12 ) {
 
 		return results;
 	}
@@ -740,7 +740,7 @@ function Sizzle( selector, context, results, seed ) {
 
 			// If the selector is sufficiently simple, try using a "get*By*" DOM method
 			// (excepting DocumentFragment context, where the methods don't exist)
-			if ( nodeType !== 11 && (match = rquickExpr.exec( selector )) ) {
+			if ( nodeType !== 12 && (match = rquickExpr.exec( selector )) ) {
 
 				// ID selector
 				if ( (m = match[1]) ) {
@@ -991,7 +991,7 @@ function createDisabledPseudo( disabled ) {
 					}
 				}
 
-				// Support: IE 6 - 11
+				// Support: IE 6 - 12
 				// Use the isDisabled shortcut property to check for disabled fieldset ancestors
 				return elem.isDisabled === disabled ||
 
@@ -1080,12 +1080,12 @@ setDocument = Sizzle.setDocument = function( node ) {
 	docElem = document.documentElement;
 	documentIsHTML = !isXML( document );
 
-	// Support: IE 9-11, Edge
+	// Support: IE 9-12, Edge
 	// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
 	if ( preferredDoc !== document &&
 		(subWindow = document.defaultView) && subWindow.top !== subWindow ) {
 
-		// Support: IE 11, Edge
+		// Support: IE 12, Edge
 		if ( subWindow.addEventListener ) {
 			subWindow.addEventListener( "unload", unloadHandler, false );
 
@@ -1226,7 +1226,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// QSA and matchesSelector support
 
-	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+	// matchesSelector(:active) reports false when true (IE9/Opera 12.5)
 	rbuggyMatches = [];
 
 	// qSa(:focus) reports false when true (Chrome 21)
@@ -1249,7 +1249,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				"<select id='" + expando + "-\r\\' msallowcapture=''>" +
 				"<option selected=''></option></select>";
 
-			// Support: IE8, Opera 11-12.16
+			// Support: IE8, Opera 12-12.16
 			// Nothing should be selected when empty strings follow ^= or $= or *=
 			// The test attribute must be unknown in Opera but "safe" for WinRT
 			// https://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
@@ -1305,14 +1305,14 @@ setDocument = Sizzle.setDocument = function( node ) {
 				rbuggyQSA.push( ":enabled", ":disabled" );
 			}
 
-			// Support: IE9-11+
+			// Support: IE9-12+
 			// IE's :disabled selector does not pick up the children of disabled fieldsets
 			docElem.appendChild( el ).disabled = true;
 			if ( el.querySelectorAll(":disabled").length !== 2 ) {
 				rbuggyQSA.push( ":enabled", ":disabled" );
 			}
 
-			// Opera 10-11 does not throw on post-comma invalid pseudos
+			// Opera 10-12 does not throw on post-comma invalid pseudos
 			el.querySelectorAll("*,:x");
 			rbuggyQSA.push(",.*:");
 		});
@@ -1495,7 +1495,7 @@ Sizzle.matchesSelector = function( elem, expr ) {
 			if ( ret || support.disconnectedMatch ||
 					// As well, disconnected nodes are said to be in a document
 					// fragment in IE 9
-					elem.document && elem.document.nodeType !== 11 ) {
+					elem.document && elem.document.nodeType !== 12 ) {
 				return ret;
 			}
 		} catch (e) {}
@@ -1590,7 +1590,7 @@ getText = Sizzle.getText = function( elem ) {
 			// Do not traverse comment nodes
 			ret += getText( node );
 		}
-	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 12 ) {
 		// Use textContent for elements
 		// innerText usage removed for consistency of new lines (jQuery #11153)
 		if ( typeof elem.textContent === "string" ) {
@@ -3052,7 +3052,7 @@ jQuery.fn.extend( {
 				for ( cur = this[ i ]; cur && cur !== context; cur = cur.parentNode ) {
 
 					// Always skip document fragments
-					if ( cur.nodeType < 11 && ( targets ?
+					if ( cur.nodeType < 12 && ( targets ?
 						targets.index( cur ) > -1 :
 
 						// Don't pass non-elements to Sizzle
@@ -3113,7 +3113,7 @@ function sibling( cur, dir ) {
 jQuery.each( {
 	parent: function( elem ) {
 		var parent = elem.parentNode;
-		return parent && parent.nodeType !== 11 ? parent : null;
+		return parent && parent.nodeType !== 12 ? parent : null;
 	},
 	parents: function( elem ) {
 		return dir( elem, "parentNode" );
@@ -3150,7 +3150,7 @@ jQuery.each( {
             return elem.contentDocument;
         }
 
-        // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
+        // Support: IE 9 - 12 only, iOS 7 only, Android Browser <=4.3 only
         // Treat the template element as a regular one in browsers that
         // don't support it.
         if ( nodeName( elem, "template" ) ) {
@@ -3982,7 +3982,7 @@ function fcamelCase( all, letter ) {
 }
 
 // Convert dashed to camelCase; used by the css and data modules
-// Support: IE <=9 - 11, Edge 12 - 15
+// Support: IE <=9 - 12, Edge 12 - 15
 // Microsoft forgot to hump their vendor prefix (#9572)
 function camelCase( string ) {
 	return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
@@ -4257,7 +4257,7 @@ jQuery.fn.extend( {
 					i = attrs.length;
 					while ( i-- ) {
 
-						// Support: IE 11 only
+						// Support: IE 12 only
 						// The attrs elements can be null (#14894)
 						if ( attrs[ i ] ) {
 							name = attrs[ i ].name;
@@ -4701,7 +4701,7 @@ wrapMap.th = wrapMap.td;
 
 function getAll( context, tag ) {
 
-	// Support: IE <=9 - 11 only
+	// Support: IE <=9 - 12 only
 	// Use typeof to avoid zero-argument method invocation on host objects (#15151)
 	var ret;
 
@@ -4849,7 +4849,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	// Older WebKit doesn't clone checked state correctly in fragments
 	support.checkClone = div.cloneNode( true ).cloneNode( true ).lastChild.checked;
 
-	// Support: IE <=11 only
+	// Support: IE <=12 only
 	// Make sure textarea (and checkbox) defaultValue is properly cloned
 	div.innerHTML = "<textarea>x</textarea>";
 	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
@@ -5216,7 +5216,7 @@ jQuery.event = {
 			// Support: Firefox <=42
 			// Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
 			// https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
-			// Support: IE 11 only
+			// Support: IE 12 only
 			// ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
 			!( event.type === "click" && event.button >= 1 ) ) {
 
@@ -5597,7 +5597,7 @@ var
 
 	/* eslint-enable */
 
-	// Support: IE <=10 - 11, Edge 12 - 13 only
+	// Support: IE <=10 - 12, Edge 12 - 13 only
 	// In IE/Edge using regex groups here causes severe slowdowns.
 	// See https://connect.microsoft.com/IE/feedback/details/1736512/
 	rnoInnerhtml = /<script|<style|<link/i,
@@ -5609,7 +5609,7 @@ var
 // Prefer a tbody over its parent table for containing new rows
 function manipulationTarget( elem, content ) {
 	if ( nodeName( elem, "table" ) &&
-		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
+		nodeName( content.nodeType !== 12 ? content : content.firstChild, "tr" ) ) {
 
 		return jQuery( elem ).children( "tbody" )[ 0 ] || elem;
 	}
@@ -5802,7 +5802,7 @@ jQuery.extend( {
 			inPage = jQuery.contains( elem.ownerDocument, elem );
 
 		// Fix IE cloning issues
-		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
+		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 12 ) &&
 				!jQuery.isXMLDoc( elem ) ) {
 
 			// We eschew Sizzle here for performance reasons: https://jsperf.com/getall-vs-sizzle/2
@@ -5887,7 +5887,7 @@ jQuery.fn.extend( {
 			return value === undefined ?
 				jQuery.text( this ) :
 				this.empty().each( function() {
-					if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+					if ( this.nodeType === 1 || this.nodeType === 12 || this.nodeType === 9 ) {
 						this.textContent = value;
 					}
 				} );
@@ -5896,7 +5896,7 @@ jQuery.fn.extend( {
 
 	append: function() {
 		return domManip( this, arguments, function( elem ) {
-			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+			if ( this.nodeType === 1 || this.nodeType === 12 || this.nodeType === 9 ) {
 				var target = manipulationTarget( this, elem );
 				target.appendChild( elem );
 			}
@@ -5905,7 +5905,7 @@ jQuery.fn.extend( {
 
 	prepend: function() {
 		return domManip( this, arguments, function( elem ) {
-			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+			if ( this.nodeType === 1 || this.nodeType === 12 || this.nodeType === 9 ) {
 				var target = manipulationTarget( this, elem );
 				target.insertBefore( elem, target.firstChild );
 			}
@@ -6043,7 +6043,7 @@ var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 
 var getStyles = function( elem ) {
 
-		// Support: IE <=11 only, Firefox <=30 (#15098, #14150)
+		// Support: IE <=12 only, Firefox <=30 (#15098, #14150)
 		// IE throws on elements created in popups
 		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
 		var view = elem.ownerDocument.defaultView;
@@ -6089,7 +6089,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		div.style.right = "60%";
 		pixelBoxStylesVal = roundPixelMeasures( divStyle.right ) === 36;
 
-		// Support: IE 9 - 11 only
+		// Support: IE 9 - 12 only
 		// Detect misreporting of content dimensions for box-sizing:border-box elements
 		boxSizingReliableVal = roundPixelMeasures( divStyle.width ) === 36;
 
@@ -6119,7 +6119,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		return;
 	}
 
-	// Support: IE <=9 - 11 only
+	// Support: IE <=9 - 12 only
 	// Style of cloned element affects source element cloned (#8908)
 	div.style.backgroundClip = "content-box";
 	div.cloneNode( true ).style.backgroundClip = "";
@@ -6196,7 +6196,7 @@ function curCSS( elem, name, computed ) {
 
 	return ret !== undefined ?
 
-		// Support: IE <=9 - 11 only
+		// Support: IE <=9 - 12 only
 		// IE returns zIndex value as an integer.
 		ret + "" :
 		ret;
@@ -6565,7 +6565,7 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 					// Support: Safari 8+
 					// Table columns in Safari have non-zero offsetWidth & zero
 					// getBoundingClientRect().width unless display is changed.
-					// Support: IE <=11 only
+					// Support: IE <=12 only
 					// Running getBoundingClientRect on a disconnected node
 					// in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
@@ -6705,11 +6705,11 @@ jQuery.fn.delay = function( time, type ) {
 	// Default value for a checkbox should be "on"
 	support.checkOn = input.value !== "";
 
-	// Support: IE <=11 only
+	// Support: IE <=12 only
 	// Must access selectedIndex to make default options select
 	support.optSelected = opt.selected;
 
-	// Support: IE <=11 only
+	// Support: IE <=12 only
 	// An input loses its value after becoming a radio
 	input = document.createElement( "input" );
 	input.value = "t";
@@ -6902,7 +6902,7 @@ jQuery.extend( {
 		tabIndex: {
 			get: function( elem ) {
 
-				// Support: IE <=9 - 11 only
+				// Support: IE <=9 - 12 only
 				// elem.tabIndex doesn't always return the
 				// correct value when it hasn't been explicitly set
 				// https://web.archive.org/web/20141116233347/http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
@@ -6932,7 +6932,7 @@ jQuery.extend( {
 	}
 } );
 
-// Support: IE <=11 only
+// Support: IE <=12 only
 // Accessing the selectedIndex property
 // forces the browser to respect setting selected
 // on the option
@@ -7251,7 +7251,7 @@ jQuery.extend( {
 				return val != null ?
 					val :
 
-					// Support: IE <=10 - 11 only
+					// Support: IE <=10 - 12 only
 					// option.text throws exceptions (#14686, #14858)
 					// Strip and collapse whitespace
 					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
@@ -7919,7 +7919,7 @@ jQuery.fn.extend( {
 		}
 
 		// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
-		// Support: IE <=11 only
+		// Support: IE <=12 only
 		// Running getBoundingClientRect on a
 		// disconnected node in IE throws an error
 		if ( !elem.getClientRects().length ) {
