@@ -11,6 +11,7 @@
 </div>
 <hr />
 <div id="Report">
+
 </div>
 @section scripts
 {
@@ -39,27 +40,30 @@
               widths.sort(function (a, b) { return a - b });
               widths.reverse();
             });
-            $.each(optioncount, function (j) {
-              if ((parseFloat(optioncount[j].split('-')[1]) / 11) * 100 == widths[0]) {
-
-                items += "<div id='success' class='progress-bar progress-bar-success' role='progressbar' style='width:" + parseFloat(widths[0] - 1) + "% ; margin-right:1px' >"
-                  + optioncount[j].replace(' ', '') + "</div>"
-              }
-              else if ((parseFloat(optioncount[j].split('-')[1]) / 11) * 100 == widths[1]) {
-
-                items += "<div id='ok' class='progress-bar progress-bar-info' role='progressbar' style='width:" + parseFloat(widths[1] - 1) + "% ;margin-right:1px'>"
-                  + optioncount[j].replace(' ', '') + "</div>"
-              }
-              else if ((parseFloat(optioncount[j].split('-')[1]) / 11) * 100 == widths[2]) {
-
-                items += "<div id='Warning' class='progress-bar progress-bar-warning' role='progressbar' style='width:" + parseFloat(widths[2] - 1) + "% ; margin-right:1px' >"
-                  + optioncount[j].replace(' ', '') + "</div>"
-              }
-              else if (((parseFloat(optioncount[j].split('-')[1]) / 11) * 100) == widths[3]) {
-
-                items += "<div id='danger' class='progress-bar progress-bar-danger' role='progressbar' style='width:" + parseFloat(widths[3] - 1) + "% ; margin-right:1px'>"
-                  + optioncount[j].replace(' ', '') + "</div>"
-              }
+            $.each(widths, function (k) {
+              $.each(optioncount, function (j) {
+                var wid = (parseFloat(optioncount[j].split('-')[1]) / 11) * 100;
+                if (wid == widths[k]) {
+                  if (k == 0) {
+                    items += "<div id='success' class='progress-bar progress-bar-success' role='progressbar' style='width:" + parseFloat(widths[k]) + "% ' >"
+                      + optioncount[j].replace(' ', '') + "</div>"
+                  }
+                  else if (k == 1) {
+                    items += "<div id='ok' class='progress-bar progress-bar-info' role='progressbar' style='width:" + parseFloat(widths[k]) + "% ;'>"
+                      + optioncount[j].replace(' ', '') + "</div>"
+                  }
+                  else if (k == 2) {
+                    items += "<div id='Warning' class='progress-bar progress-bar-warning' role='progressbar' style='width:" + parseFloat(widths[k]) + "% ; ' >"
+                      + optioncount[j].replace(' ', '') + "</div>"
+                  }
+                  else if (k == 3) {
+                    items += "<div id='danger' class='progress-bar progress-bar-danger' role='progressbar' style='width:" + parseFloat(widths[k]) + "% ; '>"
+                      + optioncount[j].replace(' ', '') + "</div>"
+                  }
+                  optioncount.splice(j, 1);
+                  return false;
+                }
+              });
             });
             items += "</div></div>";
           });
