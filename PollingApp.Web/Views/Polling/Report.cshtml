@@ -37,7 +37,7 @@
                             var width = (parseFloat(optioncount[j].split('-')[1]) / 11) * 100;
                             widths.push(width);
                             widths.sort(function (a, b) { return a - b });
-                            widths.reverse();
+                            widths.reverse();//reversing the array
                         });
                         $.each(optioncount, function (j) {
                             if ((parseFloat(optioncount[j].split('-')[1]) / 11) * 100 == widths[0]) {
